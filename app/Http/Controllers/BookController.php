@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
+use App\Models\Books;
 
-class UserController extends Controller
+class BookController extends Controller
 {
 
     public function create(Request $request)
     {
         try {
-            User::create([
+            Books::create([
                 'name' => $request->name,
-                'pin' => $request->pin,
-                'address' => $request->address,
-                'avatar' => $request->avatar
+                'author' => $request->author,
+                'desc' => $request->desc
             ]);
 
             return ResponseHelper::green('Successfully created!');
@@ -28,7 +27,7 @@ class UserController extends Controller
     public function getAll()
     {
         try {
-            $data = User::all();
+            $data = Books::all();
 
             return ResponseHelper::green('Successfully!', $data);
         } catch (\Throwable $th) {
@@ -39,7 +38,7 @@ class UserController extends Controller
     public function getByID($id)
     {
         try {
-            $data = User::where('id', $id)->get();
+            $data = Books::where('id', $id)->get();
 
             return ResponseHelper::green('Successfully!', $data);
         } catch (\Throwable $th) {
