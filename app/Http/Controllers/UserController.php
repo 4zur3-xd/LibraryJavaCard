@@ -17,7 +17,6 @@ class UserController extends Controller
                 'pin' => $request->pin,
                 'address' => $request->address,
                 'avatar' => $request->avatar,
-                'role' => $request->role,
             ]);
 
             return ResponseHelper::green();
