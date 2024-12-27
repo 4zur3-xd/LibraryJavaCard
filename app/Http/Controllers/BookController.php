@@ -15,7 +15,9 @@ class BookController extends Controller
             Books::create([
                 'name' => $request->name,
                 'author' => $request->author,
-                'desc' => $request->desc
+                'desc' => $request->desc,
+                'img_url' => $request->img_url,
+                'genre' => $request->genre,
             ]);
 
             return ResponseHelper::green('Successfully created!');

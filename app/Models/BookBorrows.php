@@ -12,6 +12,7 @@ class BookBorrows extends Model
         'book_id',
         'duration',
         'created_at',
+        'return_date',
     ];
 
     public $timestamps = false;

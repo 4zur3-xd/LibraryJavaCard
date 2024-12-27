@@ -13,6 +13,8 @@ class Books extends Model
         'name',
         'author',
         'desc',
+        'img_url',
+        'genre',
     ];
 
 }

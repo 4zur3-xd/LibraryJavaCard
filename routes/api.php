@@ -5,21 +5,13 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookBorrowController;
 
-Route::prefix('user')->group(function(){
-    Route::post('create', [UserController::class, 'create']);
+Route::post('create-user', [UserController::class, 'create']);
+Route::get('get-all-users', [UserController::class, 'getAll']);
+Route::get('user/{id}', [UserController::class, 'getByID']);
 
-    Route::get('get-all', [UserController::class, 'getAll']);
-
-    Route::get('{id}', [UserController::class, 'getByID']);
-});
-
-Route::prefix('book')->group(function(){
-    Route::post('create', [BookController::class, 'create']);
-
-    Route::get('get-all', [BookController::class, 'getAll']);
-
-    Route::get('{id}', [BookController::class, 'getByID']);
-});
+Route::post('create-book', [BookController::class, 'create']);
+Route::get('get-all-books', [BookController::class, 'getAll']);
+Route::get('book/{id}', [BookController::class, 'getByID']);
 
 Route::post('add-borrow', [BookBorrowController::class, 'borrow']);
 Route::get('history/{id}', [BookBorrowController::class, 'borrowHistory']);
