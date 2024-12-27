@@ -29,6 +29,10 @@ class BookBorrowController extends Controller
         try {
             $data = BookBorrows::where('user_id', $id)->get();
 
+            if($data->isEmpty()){
+                return ResponseHelper::red('Empty');
+            }
+
             return ResponseHelper::green($data);
         } catch (\Throwable $th) {
             return ResponseHelper::red($th->getMessage());

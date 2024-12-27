@@ -30,6 +30,10 @@ class UserController extends Controller
         try {
             $data = User::all();
 
+            if($data->isEmpty()){
+                return ResponseHelper::red('Empty database');
+            }
+
             return ResponseHelper::green($data);
         } catch (\Throwable $th) {
             return ResponseHelper::red($th->getMessage());
@@ -40,6 +44,10 @@ class UserController extends Controller
     {
         try {
             $data = User::where('id', $id)->get();
+
+            if($data->isEmpty()){
+                return ResponseHelper::red('User not exists');
+            }
 
             return ResponseHelper::green($data);
         } catch (\Throwable $th) {
@@ -53,7 +61,7 @@ class UserController extends Controller
             $user = User::find($id);
 
             if(!$user){
-                return ResponseHelper::red("User not exists");
+                return ResponseHelper::red('User not exists');
             }
 
             if(!empty($request->name)){

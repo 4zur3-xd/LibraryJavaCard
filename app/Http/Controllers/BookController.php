@@ -31,6 +31,10 @@ class BookController extends Controller
         try {
             $data = Books::all();
 
+            if($data->isEmpty()){
+                return ResponseHelper::red('Empty database');
+            }
+
             return ResponseHelper::green($data);
         } catch (\Throwable $th) {
             return ResponseHelper::red($th->getMessage());
@@ -41,6 +45,10 @@ class BookController extends Controller
     {
         try {
             $data = Books::where('id', $id)->get();
+
+            if($data->isEmpty()){
+                return ResponseHelper::red('Book not exists');
+            }
 
             return ResponseHelper::green($data);
         } catch (\Throwable $th) {
