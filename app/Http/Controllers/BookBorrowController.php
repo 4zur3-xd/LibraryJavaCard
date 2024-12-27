@@ -18,7 +18,7 @@ class BookBorrowController extends Controller
                 'created_at' => now(),
             ]);
 
-            return ResponseHelper::green('Successfully borrowed!');
+            return ResponseHelper::green();
         } catch (\Throwable $th) {
             return ResponseHelper::red($th->getMessage());
         }
@@ -29,7 +29,24 @@ class BookBorrowController extends Controller
         try {
             $data = BookBorrows::where('user_id', $id)->get();
 
-            return ResponseHelper::green('Successfully get!', $data);
+            return ResponseHelper::green($data);
+        } catch (\Throwable $th) {
+            return ResponseHelper::red($th->getMessage());
+        }
+    }
+
+    public function returnABook($user_id, $book_id){
+        try {
+            $borrow = BookBorrows::where('user_id', $user_id)->where('book_id', $book_id)->first();
+
+            if(!$borrow){
+                return ResponseHelper::red('Can\'t find!');
+            }
+
+            $borrow->return_date = now();
+            $borrow->save();
+
+            return ResponseHelper::green();
         } catch (\Throwable $th) {
             return ResponseHelper::red($th->getMessage());
         }
