@@ -5,11 +5,11 @@ namespace App\Helpers;
 class ResponseHelper{
 
 
-    public static function green($msg = '', $data = '')
+    public static function green($data = '')
     {
         return response()->json(
             [
-                'msg' => $msg,
+                'status' => true,
                 'data' => $data,
             ],
             200
@@ -20,6 +20,7 @@ class ResponseHelper{
     {
         return response()->json(
             [
+                'status' => false,
                 'msg' => $msg,
             ],
             400

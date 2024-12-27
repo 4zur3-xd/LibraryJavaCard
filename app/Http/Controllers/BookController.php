@@ -20,7 +20,7 @@ class BookController extends Controller
                 'genre' => $request->genre,
             ]);
 
-            return ResponseHelper::green('Successfully created!');
+            return ResponseHelper::green();
         } catch (\Throwable $th) {
             return ResponseHelper::red($th->getMessage());
         }
@@ -31,7 +31,7 @@ class BookController extends Controller
         try {
             $data = Books::all();
 
-            return ResponseHelper::green('Successfully!', $data);
+            return ResponseHelper::green($data);
         } catch (\Throwable $th) {
             return ResponseHelper::red($th->getMessage());
         }
@@ -42,7 +42,44 @@ class BookController extends Controller
         try {
             $data = Books::where('id', $id)->get();
 
-            return ResponseHelper::green('Successfully!', $data);
+            return ResponseHelper::green($data);
+        } catch (\Throwable $th) {
+            return ResponseHelper::red($th->getMessage());
+        }
+    }
+
+    public function edit($id, Request $request)
+    {
+        try {
+            $book = Books::find($id);
+
+            if(!$book){
+                return ResponseHelper::red("User not exists");
+            }
+
+            if(!empty($request->name)){
+                $book->name = $request->name;
+            }
+
+            if(!empty($request->author)){
+                $book->author = $request->author;
+            }
+
+            if(!empty($request->desc)){
+                $book->desc = $request->desc;
+            }
+
+            if(!empty($request->img_url)){
+                $book->img_url = $request->img_url;
+            }
+
+            if(!empty($request->genre)){
+                $book->genre = $request->genre;
+            }
+
+            $book->save();
+
+            return ResponseHelper::green();
         } catch (\Throwable $th) {
             return ResponseHelper::red($th->getMessage());
         }
