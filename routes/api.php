@@ -19,3 +19,5 @@ Route::post('add-borrow', [BookBorrowController::class, 'borrow']);
 Route::get('history/{id}', [BookBorrowController::class, 'borrowHistory']);
 
 Route::get('user/{user_id}/return/{book_id}', [BookBorrowController::class, 'returnABook']);
+
+Route::get('get-lastest-id', [UserController::class, 'getLastestID']);

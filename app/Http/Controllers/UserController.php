@@ -89,4 +89,19 @@ class UserController extends Controller
         }
     }
 
+    public function getLastestID()
+    {
+        try {
+            $id = User::orderBy('created_at', 'desc')->value('id');
+
+            if(!$id){
+                return ResponseHelper::red('No ID found!');
+            }
+
+            return ResponseHelper::green($id);
+        } catch (\Throwable $th) {
+            return ResponseHelper::red($th->getMessage());
+        }
+    }
+
 }
