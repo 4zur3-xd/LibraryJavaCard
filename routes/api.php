@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
@@ -15,7 +16,6 @@ Route::get('get-all-books', [BookController::class, 'getAll']);
 Route::get('book/{id}', [BookController::class, 'getByID']);
 Route::post('book/{id}/edit', [BookController::class, 'edit']);
 Route::get('genre/{genre}', [BookController::class, 'getByGenre']);
-Route::get('genre/', [BookController::class, 'getAllGenre']);
 
 Route::post('add-borrow', [BookBorrowController::class, 'borrow']);
 Route::get('history/{id}', [BookBorrowController::class, 'borrowHistory']);
@@ -23,3 +23,8 @@ Route::get('history/{id}', [BookBorrowController::class, 'borrowHistory']);
 Route::get('user/{user_id}/return/{book_id}', [BookBorrowController::class, 'returnABook']);
 
 Route::get('get-lastest-id', [UserController::class, 'getLastestID']);
+
+Route::get('genre', [GenreController::class, 'getAll']);
+Route::post('create-genre', [GenreController::class, 'create']);
+Route::post('genre/{id}/edit', [GenreController::class, 'edit']);
+Route::get('genre/{id}/delete', [GenreController::class, 'delete']);

@@ -96,22 +96,7 @@ class BookController extends Controller
     public function getByGenre($genre)
     {
         try {
-            $data = Books::where('genre', $genre)->get();
-
-            if($data->isEmpty()){
-                return ResponseHelper::red('Empty');
-            }
-
-            return ResponseHelper::green($data);
-        } catch (\Throwable $th) {
-            return ResponseHelper::red($th->getMessage());
-        }
-    }
-
-    public function getAllGenre()
-    {
-        try {
-            $data = Books::select('genre')->distinct()->get();
+            $data = Books::where('genre_id', $genre)->get();
 
             if($data->isEmpty()){
                 return ResponseHelper::red('Empty');
