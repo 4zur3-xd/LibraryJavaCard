@@ -17,7 +17,7 @@ class BookController extends Controller
                 'author' => $request->author,
                 'desc' => $request->desc,
                 'img_url' => $request->img_url,
-                'genre' => $request->genre_id,
+                'genre_id' => $request->genre_id,
             ]);
 
             return ResponseHelper::green();
