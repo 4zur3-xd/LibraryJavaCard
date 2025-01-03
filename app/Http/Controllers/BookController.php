@@ -93,6 +93,23 @@ class BookController extends Controller
         }
     }
 
+    public function delete($id)
+    {
+        try {
+            $book = Books::find($id);
+
+            if(!$book){
+                return ResponseHelper::red("Book not exists");
+            }
+
+            $book->delete();
+
+            return ResponseHelper::green();
+        } catch (\Throwable $th) {
+            return ResponseHelper::red($th->getMessage());
+        }
+    }
+
     public function getByGenre($genre)
     {
         try {

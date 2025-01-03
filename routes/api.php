@@ -15,6 +15,7 @@ Route::post('create-book', [BookController::class, 'create']);
 Route::get('get-all-books', [BookController::class, 'getAll']);
 Route::get('book/{id}', [BookController::class, 'getByID']);
 Route::post('book/{id}/edit', [BookController::class, 'edit']);
+Route::post('book/{id}/delete', [BookController::class, 'delete']);
 Route::get('genre/{genre}', [BookController::class, 'getByGenre']);
 
 Route::post('add-borrow', [BookBorrowController::class, 'borrow']);

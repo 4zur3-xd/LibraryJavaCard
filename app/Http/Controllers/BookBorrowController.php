@@ -11,6 +11,12 @@ class BookBorrowController extends Controller
     public function borrow(Request $request)
     {
         try {
+            $check = BookBorrows::where('user_id', $request->user_id)->where('book_id', $request->book_id)->where('return_date', null)->get();
+
+            if($check->isNotEmpty()){
+                return ResponseHelper::red('You have already borrow this book!');
+            }
+
             BookBorrows::create([
                 'user_id' => $request->user_id,
                 'book_id' => $request->book_id,
