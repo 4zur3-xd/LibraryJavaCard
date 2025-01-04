@@ -24,6 +24,7 @@ class User extends Authenticatable
         'status',
         'avatar',
         'role',
+        'public_key',
     ];
 
     /**

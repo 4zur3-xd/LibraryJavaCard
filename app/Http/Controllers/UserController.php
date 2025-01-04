@@ -17,6 +17,7 @@ class UserController extends Controller
                 'pin' => $request->pin,
                 'address' => $request->address,
                 'avatar' => $request->avatar,
+                'public_key' => $request->public_key,
             ]);
 
             return ResponseHelper::green();
@@ -86,6 +87,10 @@ class UserController extends Controller
 
             if(!empty($request->status)){
                 $user->status = $request->status;
+            }
+
+            if(!empty($request->public_key)){
+                $user->public_key = $request->public_key;
             }
 
             $user->save();
