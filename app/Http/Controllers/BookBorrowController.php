@@ -47,7 +47,7 @@ class BookBorrowController extends Controller
 
     public function returnABook($user_id, $book_id){
         try {
-            $borrow = BookBorrows::where('user_id', $user_id)->where('book_id', $book_id)->first();
+            $borrow = BookBorrows::where('user_id', $user_id)->where('book_id', $book_id)->where('return_date', null)->first();
 
             if(!$borrow){
                 return ResponseHelper::red('Can\'t find!');
