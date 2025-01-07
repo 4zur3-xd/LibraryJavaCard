@@ -61,4 +61,19 @@ class BookBorrowController extends Controller
             return ResponseHelper::red($th->getMessage());
         }
     }
+
+    public function getBorrowingBooks()
+    {
+        try {
+            $data = BookBorrows::where('return_date', null)->get();
+
+            if($data->isEmpty()){
+                return ResponseHelper::red('Empty!');
+            }
+
+            return ResponseHelper::green($data);
+        } catch (\Throwable $th) {
+            return ResponseHelper::red($th->getMessage());
+        }
+    }
 }

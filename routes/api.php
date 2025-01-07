@@ -20,6 +20,7 @@ Route::get('genre/{genre}', [BookController::class, 'getByGenre']);
 
 Route::post('add-borrow', [BookBorrowController::class, 'borrow']);
 Route::get('history/{id}', [BookBorrowController::class, 'borrowHistory']);
+Route::get('borrowed-books', [BookBorrowController::class, 'getBorrowingBooks']);
 
 Route::get('user/{user_id}/return/{book_id}', [BookBorrowController::class, 'returnABook']);
 
