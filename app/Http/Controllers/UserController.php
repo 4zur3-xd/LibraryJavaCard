@@ -85,7 +85,7 @@ class UserController extends Controller
                 $user->role = $request->role;
             }
 
-            if(!empty($request->status)){
+            if(isset($request->status)){
                 $user->status = $request->status;
             }
 
