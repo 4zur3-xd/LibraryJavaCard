@@ -7,7 +7,7 @@ use phpseclib3\Crypt\RSA;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
-use phpseclib3\Crypt\PublicKeyLoader;
+use phpseclib3\Math\BigInteger;
 
 class RSAController extends Controller
 {
@@ -21,17 +21,23 @@ class RSAController extends Controller
     public function RSAVerify(Request $request)
     {
         try {
-            $user = User::find( $request->user_id);
+            $user = User::find($request->user_id);
 
             if(!$user){
                 return ResponseHelper::red("User not exists");
             }
 
-            $pubKey = $user->public_key;
+            $rawKey = hex2bin(str_replace(' ', '', $user->public_key));
             $challenge = $request->challenge;
-            $sign = $request->sign;
+            $sign = hex2bin(str_replace(' ', '', $request->sign));
 
-            $rsa = PublicKeyLoader::load($pubKey);
+            $modulus = new BigInteger($rawKey, 256);
+            $exponent = new BigInteger('65537');
+
+            $rsa = RSA::load([
+                'n' => $modulus,
+                'e' => $exponent,
+            ]);
 
             $result = $rsa->verify($challenge, $sign);
 
