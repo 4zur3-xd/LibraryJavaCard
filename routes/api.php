@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\RSAController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
@@ -30,3 +31,6 @@ Route::get('genre', [GenreController::class, 'getAll']);
 Route::post('create-genre', [GenreController::class, 'create']);
 Route::post('genre/{id}/edit', [GenreController::class, 'edit']);
 Route::get('genre/{id}/delete', [GenreController::class, 'delete']);
+
+Route::get('rsa/new-challenge', [RSAController::class, 'challengeGen']);
+Route::post('rsa/verify-challenge', [RSAController::class, 'RSAVerify']);
