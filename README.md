@@ -6,7 +6,7 @@
 - Providing users, books, genres CRUD, books borrowing APIs
 
 > [!IMPORTANT]
-> This project planned to run locally so all APIs has no auth.
+> This project planned to run locally so all APIs have no auth.
 
 > [!IMPORTANT]
 > Deleting APIs methods should be DELETE, etc... right? But all role, auth things will be done by app side so...
